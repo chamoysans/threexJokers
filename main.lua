@@ -18,6 +18,7 @@ local common = {
     "hearnoevil",
     "jimmy",
     "clowncar",
+    "funnymoney",
     "loot",
     "sharpshooter",
     "blank",
@@ -55,6 +56,7 @@ local common = {
     "chess",
     "cookie",
     "cash",
+    "passport",
     "streamer",
     "potatoes/spud",
     "potatoes/battery",
@@ -85,6 +87,7 @@ local common = {
     "celeb/agent",
     "celeb/actor",
     "serpent",
+    "pillar",
 }
 
 SMODS.Atlas({
