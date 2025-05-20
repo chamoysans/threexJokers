@@ -38,7 +38,7 @@ local hearnoevil = SMODS.Joker{
       }
     end, 
     calculate = function(self, card, context)
-      if context.individual and context.cardarea == G.play and not context.blueprint_card then
+      if context.individual and context.cardarea == G.play and not context.blueprint_card and context.other_card then
         card.ability.extra.current = card.ability.extra.current + card.ability.extra.chips
         card_eval_status_text(card, "extra", nil, nil, nil, { message = "Upgrade!" })
         return true

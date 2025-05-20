@@ -1,30 +1,43 @@
-local jokerName = "nametag"
+local jokerName = "funnymoney"
 
 local jokerThing = SMODS.Joker{
     name = jokerName, 
     key = jokerName, 
     config = {
       extra = {
+        multMin = 0.5,
+        multMax = 1.5
       }
     }, 
-    pos = {x = 1, y = 7}, 
+    pos = {x = 4, y = 3}, 
     loc_txt = {
-      name = "Nametag", 
+      name = "Funny Money", 
       text = {
-        "{C:attention}Face Cards{} give {C:mult}+3{} Mult instead",
-        "of normal chip value",
+        "At end of round, multiply",
+        "cash-out value by a random",
+        "number from {X:money,C:white}X0.5{} to {X:money,C:white}X1.5{},",
       }
     }, 
     rarity = 1, 
-    cost = 5, 
+    cost = 2, 
     unlocked = true, 
     discovered = true, 
-    blueprint_compat = true, 
+    blueprint_compat = false, 
     atlas = "a_threex_sheet",
+    calc_dollar_bonus = function(self, card)
+
+      local min_val = card.ability.extra.multMin
+      local max_val = card.ability.extra.multMax
+
+      local randomThing = round_number(min_val + (max_val - min_val) * math.random(), 2)
+      print("3xJ | funnymoney.lua | " .. randomThing)
+      return {randomThing, true}
+    end,
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
-          
+          card.ability.extra.multMin,
+          card.ability.extra.multMax
         }
       }
     end, 
@@ -53,7 +66,7 @@ if testDecks then
             func = function()
               for index = #G.playing_cards, 1, -1 do
                 local suit = "S_"
-                local rank = "K"
+                local rank = "7"
 
                 G.playing_cards[index]:set_base(G.P_CARDS[suit .. rank])
               end
