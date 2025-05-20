@@ -25,6 +25,10 @@ local context = { full_hand = G.play.cards, scoring_hand = scoring_hand, scoring
 local cards_destroyed = cards_destroyed
 local scoring_hand = (v == G.play and scoring_hand or v == 'unscored' and unscored_cards or nil)
 
+for i, card in ipairs(context.full_hand) do
+	card.ability.played_this_ante = true -- [PILLARFUNCTIONALITY]
+end
+
 for i,card in ipairs(scoring_hand or context.cardarea.cards) do
 	local destroyed = nil
 	--un-highlight all cards

@@ -1,0 +1,21 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "G.hand.highlighted[i].ability.played_this_ante = true"
+position = "at"
+payload = '''
+-- Removed by hand.toml in 3xJ Mod ( LOOK AT THE TOML FILE FOR NOTES)
+'''
+match_indent = true
+
+# For those who are wondering:
+# THIS DOES NOT BREAK THE PILLAR,
+# This simply relocates where the played_this_ante
+# is, it is simply in destroy.toml,
+# Should be commented, Just CTRL+F then search for:
+# "[PILLARFUNCTIONALITY]",
+# Yes, just do that, Don't include the quotes.
